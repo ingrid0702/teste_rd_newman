@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "e8a7c4a2-15f1-4094-911d-811def5f6fbc",
+		"name": "request_viaCEP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10334570",
+		"_collection_link": "https://grey-astronaut-5561.postman.co/workspace/Team-Workspace~fe232a78-c19f-4cc8-83a3-914ca3ed8991/collection/10334570-e8a7c4a2-15f1-4094-911d-811def5f6fbc?action=share&creator=10334570&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "request_ststus200",
+			"item": [
+				{
+					"name": "CEP valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Avenida Corifeu de Azevedo Marques\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const schema = {\r",
+									"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\r",
+									"  \"title\": \"Generated schema for Root\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"cep\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"logradouro\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"complemento\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"bairro\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"localidade\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"uf\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"ibge\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"gia\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"ddd\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"siafi\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"cep\",\r",
+									"    \"logradouro\",\r",
+									"    \"complemento\",\r",
+									"    \"bairro\",\r",
+									"    \"localidade\",\r",
+									"    \"uf\",\r",
+									"    \"ibge\",\r",
+									"    \"gia\",\r",
+									"    \"ddd\",\r",
+									"    \"siafi\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"validation_schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://viacep.com.br/ws/{{via_CEP}}/json/",
+							"protocol": "https",
+							"host": [
+								"viacep",
+								"com",
+								"br"
+							],
+							"path": [
+								"ws",
+								"{{via_CEP}}",
+								"json",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invalid request",
+			"item": [
+				{
+					"name": "CEP invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"ViaCEP 400\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://viacep.com.br/ws/{{cep_invalido}}/json/",
+							"protocol": "https",
+							"host": [
+								"viacep",
+								"com",
+								"br"
+							],
+							"path": [
+								"ws",
+								"{{cep_invalido}}",
+								"json",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CEP_zerado",
+			"item": [
+				{
+					"name": "CEP_zerado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://viacep.com.br/ws/{{CEP_zerado}}/json/",
+							"protocol": "https",
+							"host": [
+								"viacep",
+								"com",
+								"br"
+							],
+							"path": [
+								"ws",
+								"{{CEP_zerado}}",
+								"json",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "via_CEP",
+			"value": "05339000"
+		},
+		{
+			"key": "CEP_invalido",
+			"value": "51240500"
+		}
+	]
+}
