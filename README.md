@@ -12,8 +12,11 @@ Teste de API para validação do serviço ViaCEP (https://viacep.com.br/)
 
 * Testes realizados
     * Validação de status code
-    * Validação de retorno
+    * Validação de retorno positivo
+    * Validação de retorno negativo
+    * Validação de retorno nulo
     * Validação de Schema JSON
+   
 
 
 ## Requesitos
